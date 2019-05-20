@@ -1,0 +1,65 @@
+#include<iostream>
+#include<cmath>
+#include<math.h> 
+#include<iomanip>
+#include<conio.h>
+
+using namespace std;
+int main()
+{
+	
+	float side1, side2, side3, isoceles, scalene, equilateral;
+	float intang1, intang2, intang3, area, perimeter, apothem, circumcenter, acute, right, obtuse, semiper;
+
+	cout << "Enter the first side of the triangle : "; cin >> side1;
+	cout << "Enter the second side of the triangle : "; cin >> side2;
+	cout << "Enter the third side of the triangle : "; cin >> side3;
+	cout << fixed << showpoint << setprecision(2);
+
+	// To find interior angles.
+	intang1 = acos ((pow(side2, 2) + pow(side3, 2) - pow(side1, 2)) / (2*(side2*side3)));
+	intang2 = acos ((pow(side1, 2) + pow(side3, 2) - pow(side2, 2)) / (2*(side1*side3)));
+	intang3 = acos ((pow(side2, 2) + pow(side1, 2) - pow(side3, 2)) / (2*(side2*side1)));
+	cout << "The interior angles are: " << intang1 << ", " << intang2 << " and " << intang3 << endl;;
+
+	// To determine if triangle is equilateral, isoceles, or scalene.
+	if (side1 == side2 && side2 == side3 && side1 == side3) // because equilateral has three equal sides.
+		cout << "The triangle is EQUILATERAL." << endl;
+	else if (side1 == side2 || side1 == side3 || side2 == side3) // because isoceles only has two equal sides.
+		cout << "The triangle is ISOCELES." << endl;
+	else // no equal sides.
+		cout << "The triangle is SCALENE." << endl;
+
+	// To compute for perimeter.
+	perimeter = side1 + side2 + side3;
+	cout << "The perimeter is: " << perimeter << endl;
+	// To compute for area, use heron's law. 
+	semiper = perimeter / 2; // get semi-perimeter first.
+	area = sqrt(semiper*(semiper - side1)*(semiper - side2)*(semiper - side3));
+	cout << "The area is: " << area << endl;
+
+	//To determine if right, acute, or obtuse.
+	if (intang1 > 90 || intang2 > 90 || intang3 > 90)
+		cout << "The triangle is an OBTUSE triangle." << endl;
+	else if (intang1 == 90 || intang2 == 90 || intang3 == 90)
+		cout << "The triangle is a RIGHT triangle." << endl;
+	else 
+		cout << "The triangle is an ACUTE triangle." << endl;
+
+	//To compute for apothem.
+	if (side1 == side2 && side2 == side3 && side1 == side3) //Apothem can only be solved if traingle is equilateral.
+	{ apothem = (2 * area) / perimeter;
+	cout << "Apothem is: " << apothem << endl;}
+	else
+		cout << "The triangle is not equilateral. There is no apothem." << endl;
+
+	//To compute for circumcenter.
+
+
+
+	
+
+
+	_getch();
+	return 0;
+}
